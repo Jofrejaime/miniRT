@@ -2,12 +2,7 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
-typedef struct s_vct3
-{
-    double  x;
-    double  y;
-    double  z;
-}   t_vct3;
+#include "vec3.h"
 
 typedef enum e_obj_type
 {
