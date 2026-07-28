@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_ambient.c                                    :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvitorin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/27 18:08:46 by lvitorin          #+#    #+#             */
-/*   Updated: 2026/07/27 18:08:48 by lvitorin         ###   ########.fr       */
+/*   Created: 2025/06/13 21:31:19 by lvitorin          #+#    #+#             */
+/*   Updated: 2025/06/13 23:31:21 by lvitorin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "libft.h"
 
-t_ambient    analyse_ambiente(char **line)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-    t_ambient result;
+	unsigned char	*p;
+	unsigned char	*f;
 
-    
-    result.ratio = 0.0;
-    result.color.r = 0;
-    result.color.g = 0;
-    result.color.b = 0;
-    return (result);
+	if (!dest)
+		return (NULL);
+	if (!src)
+		return (dest);
+	p = (unsigned char *)src;
+	f = (unsigned char *)dest;
+	while (p && f && n > 0)
+	{
+		*f++ = *p++;
+		n--;
+	}
+	return (dest);
 }

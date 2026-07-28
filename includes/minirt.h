@@ -7,7 +7,6 @@
 
 #include "vec3.h"
 #include "libft.h"
-#include "parse.h"
 
 typedef enum e_obj_type
 {

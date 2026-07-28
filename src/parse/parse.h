@@ -1,9 +1,12 @@
 #ifndef PARSE_H
 # define PARSE_H
 
+#define BUFFER_SIZE 100
 #include "minirt.h"
 
 int analyze_extent(char *filename, char *extensao);
-int	ft_strlen(const	char *s);
+t_ambient	analyse_ambiente(char **line);
+t_ambient    analyse_ambiente(char **line);
+
 
 #endif

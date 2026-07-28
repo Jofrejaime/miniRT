@@ -13,36 +13,23 @@
 
 #include "parse.h"
 
-int	ft_strlen(const	char *s)
-{
-	int	i;
-
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
 int analyze_extent(char *filename, char *extensao)
 {
-    int i;
-    int fileSize;
-    int extSize;
+    size_t  file_size;
+    size_t  ext_size;
 
-    fileSize = ft_strlen(filename);
-    extSize = ft_strlen(extensao);
-    if (extSize >= fileSize)
+    file_size = ft_strlen(filename);
+    ext_size = ft_strlen(extensao);
+    if (ext_size >= file_size)
         return (0);
-    while(extSize - 1 >= 0)
+    while (ext_size > 0)
     {
-        if (filename[fileSize - 1] != extensao[extSize - 1])
+        if (filename[file_size - 1] != extensao[ext_size - 1])
             return (0);
-        fileSize--;
-        extSize--;
+        file_size--;
+        ext_size--;
     }
-    if (filename[fileSize - 1] != '.')
+    if (filename[file_size - 1] != '.')
         return (0);
     return(1);
 }

@@ -17,12 +17,26 @@
 char    ft_isfloat(char *string)
 {
     int i; 
-
+    int num;
+    
     i = 0;
-    while (ft_isdigit(string[i]))
+    num = 0;
+    if (ft_isdigit(string[0]))
     {
-        
-    }
-    if (string[i] == '.')
-
+        while (ft_isdigit(string[i]))
+        {
+            num = num * 10 + (string[i] - '0');
+            i++;
+        }
+        if (string[i] != '.')
+            return (string[i]);
+        i++;
+        while (ft_isdigit(string[i]))
+	    {
+	        num = num * 10 + (string[i] - '0');
+	        i++;
+	    }
+	    return (string[i]);
+	}
+	return (string[0]);
 }

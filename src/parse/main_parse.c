@@ -11,7 +11,11 @@ int main(int argc, char *argv[])
     }
 
     if (!analyze_extent(argv[1], "rt"))
-        printf("Formatdo de documento errado\n");
+    {
+        printf("Formato de documento errado\n");
+        return (1);
+    }
     else
         printf("Sucesso");
+    return (0);
 }
