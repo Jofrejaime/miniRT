@@ -28,9 +28,7 @@ static char *reset_space(char *line)
 int parse_map(int fd, t_scene *scene)
 {
     char *line;
-    int i;
 
-    i = 0;
     while((line = get_next_line(fd)))
     {
        char *newLine = reset_space(line);

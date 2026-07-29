@@ -10,7 +10,7 @@ VEC3_DIR = src/lib_vec3
 LIBFT = $(LIBFT_DIR)/libft.a
 LIBVEC3 = $(VEC3_DIR)/libvec3.a
 
-INCLUDES = -Iincludes -I$(LIBFT_DIR) -I$(VEC3_DIR) -Isrc/parse
+INCLUDES = -Iincludes -I$(LIBFT_DIR) -I$(VEC3_DIR) -Isrc/parse -Isrc/Lexer
 
 SRCS = src/main.c \
 	src/parse/parse_extent.c \

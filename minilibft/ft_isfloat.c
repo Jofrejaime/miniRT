@@ -12,6 +12,7 @@
 
 
 #include "libft.h"
+#include <stdio.h>
 
 
 char    ft_isfloat(char *string, double *num)

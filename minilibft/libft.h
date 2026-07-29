@@ -32,6 +32,7 @@ int		ft_isascii(int c);
 int		ft_isprint(int c);
 size_t	ft_strlen(const char *s);
 int		ft_matrizlen(char **matriz);
+void	ft_print_arr(char **arr);
 void	*ft_memset(void *s, int c, size_t n);
 void	*ft_memchr(const char *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
