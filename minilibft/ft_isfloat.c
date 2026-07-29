@@ -32,9 +32,11 @@ char    ft_isfloat(char *string, double *num)
         if (string[i] != '.')
             return (string[i]);
         i++;
+        double dizima = 0.1;
         while (ft_isdigit(string[i]))
 	    {
-	        *num = *num + (string[i] - '0') * 0.1;
+	        *num = *num + (string[i] - '0') * dizima;
+	        dizima *= 0.1;
 	        i++;
 	    }
 	    return (string[i]);

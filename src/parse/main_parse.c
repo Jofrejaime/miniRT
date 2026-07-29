@@ -26,6 +26,7 @@ int main(int argc, char *argv[])
         printf("Erro ao analisar ambiente\n");
     else
         printf("Sucesso\n");
-    printf("Ratio ambient: %f\n %d %d %d\n", scene->ambient->ratio, scene->ambient->color.r, scene->ambient->color.g, scene->ambient->color.b);
+    if (scene->ambient)
+        printf("Ratio ambient: %f\n %d %d %d\n", scene->ambient->ratio, scene->ambient->color.r, scene->ambient->color.g, scene->ambient->color.b);
     return (0);
 }
