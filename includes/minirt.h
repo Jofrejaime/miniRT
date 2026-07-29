@@ -9,6 +9,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include "cleanup.h"
+# include "errors.h"
 
 typedef enum e_obj_type
 {

@@ -12,6 +12,32 @@
 
 
 #include "token.h"
+void ft_free_arr(char **arr)
+{
+    int i;
+
+    if (!arr)
+        return ;
+
+    i = 0;
+    while (arr[i])
+    {
+        free(arr[i]);
+        i++;
+    }
+
+    free(arr);
+}
+
+static int count_tokens(char **values)
+{
+    int i;
+
+    i = 0;
+    while (values && values[i])
+        i++;
+    return (i);
+}
 
 static t_token *token_new(
     char *raw_line,
