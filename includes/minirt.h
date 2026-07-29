@@ -2,15 +2,13 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# define BUFFER_SIZE 100
-
+#include <stdio.h>
+#include "vec3.h"
+#include "libft.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
-
-#include "../minilibft/libft.h"
-#include "../src/lib_vec3/vec3.h"
 
 typedef enum e_obj_type
 {
@@ -54,6 +52,25 @@ typedef struct s_scene
     t_object    *objects;
 }   t_scene;
 
-char *get_next_line(int fd);
+typedef struct s_image
+{
+    void    *img;
+    char    *addr;
+
+    int     bits_per_pixel;
+    int     line_length;
+    int     endian;
+}   t_image;
+
+typedef struct s_rt
+{
+    t_scene         scene;
+    t_error_info    error;
+
+    void            *mlx;
+    void            *win;
+
+    t_image         image;
+}   t_rt;
 
 #endif
