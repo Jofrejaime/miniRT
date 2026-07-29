@@ -14,18 +14,19 @@
 #include "libft.h"
 
 
-char    ft_isfloat(char *string)
+char    ft_isfloat(char *string, double *num)
 {
     int i; 
-    int num;
     
     i = 0;
-    num = 0;
+    *num = 0;
+    if (!string)
+        return ('\0');
     if (ft_isdigit(string[0]))
     {
         while (ft_isdigit(string[i]))
         {
-            num = num * 10 + (string[i] - '0');
+            *num = *num * 10 + (string[i] - '0');
             i++;
         }
         if (string[i] != '.')
@@ -33,7 +34,7 @@ char    ft_isfloat(char *string)
         i++;
         while (ft_isdigit(string[i]))
 	    {
-	        num = num * 10 + (string[i] - '0');
+	        *num = *num + (string[i] - '0') * 0.1;
 	        i++;
 	    }
 	    return (string[i]);

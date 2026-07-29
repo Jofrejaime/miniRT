@@ -26,11 +26,12 @@ typedef struct s_list
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
-char	ft_isfloat(char *string);
+char	ft_isfloat(char *string, double *num);
 int		ft_isalnum(int c);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
 size_t	ft_strlen(const char *s);
+int		ft_matrizlen(char **matriz);
 void	*ft_memset(void *s, int c, size_t n);
 void	*ft_memchr(const char *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);

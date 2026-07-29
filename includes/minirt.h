@@ -7,6 +7,10 @@
 
 #include "vec3.h"
 #include "libft.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
 
 typedef enum e_obj_type
 {
@@ -38,15 +42,15 @@ typedef struct  s_ambient
 
 typedef struct s_light
 {
-    t_vec3  pos;
+    t_vec3  *pos;
     double  ratio;
     t_color color;
 }   t_light;
 
 typedef struct s_scene
 {
-    t_ambient   ambient;
-    t_light     light;
+    t_ambient   *ambient;
+    t_light     *light;
     t_object    *objects;
 }   t_scene;
 

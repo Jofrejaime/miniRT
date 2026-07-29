@@ -13,7 +13,7 @@
 
 #include "parse.h"
 
-static char *reset_space(char **line)
+static char *reset_space(char *line)
 {
     int i;
 
@@ -21,12 +21,11 @@ static char *reset_space(char **line)
     while(line[i] == ' ' || line[i] == '\t')
             i++;
     char *newLine = ft_strdup(line + i);
-    free(line);
     return (newLine);
 }
 
 
-int parse_map(int fd)
+int parse_map(int fd, t_scene *scene)
 {
     char *line;
     int i;
@@ -34,13 +33,16 @@ int parse_map(int fd)
     i = 0;
     while((line = get_next_line(fd)))
     {
-       char *newLine = reset_space(&line);
-        if (newLine[0] == 'A')
-        {
+       char *newLine = reset_space(line);
+       free(line);
+       char **words = ft_split(newLine, ' ');
+       if (words[0][0] == 'A' && ft_matrizlen(words) == 3)
+       {
             // Process ambient light line
-            analyse_ambiente(&newLine);
+            if (!(scene->ambient = analyse_ambiente(words)))
+                return (0);
         }
         free(newLine);
     }
-    return (0);
+    return (1);
 }

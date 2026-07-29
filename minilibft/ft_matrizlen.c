@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_matrizlen.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvitorin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/13 18:50:14 by lvitorin          #+#    #+#             */
-/*   Updated: 2025/06/13 19:53:59 by lvitorin         ###   ########.fr       */
+/*   Created: 2026/07/29 10:55:39 by lvitorin          #+#    #+#             */
+/*   Updated: 2026/07/29 10:55:41 by lvitorin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 
-size_t	ft_strlen(const char *s)
+int ft_matrizlen(char **matriz)
 {
-	size_t	i;
+    int i;
 
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+    if (!matriz)
+        return (0);
+    i = 0;
+    while (matriz[i])
+        i++;
+    return (i);
 }
