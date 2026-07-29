@@ -6,6 +6,9 @@
 typedef struct s_token
 {
     char **value;
+    int count;
+    int line;
+    char *row_line;
     struct s_token *next;
 }   t_token;
 

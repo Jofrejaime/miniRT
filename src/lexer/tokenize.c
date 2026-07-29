@@ -13,80 +13,84 @@
 
 #include "token.h"
 
-void    print_tokens(t_token *tokens)
+static t_token *token_new(
+    char *raw_line,
+    int line_number)
+{
+    t_token *token;
+    token = malloc(sizeof(t_token));
+    if (!token)
+        return (NULL);
+    token->raw_line = ft_strdup(raw_line);
+    token->values = ft_split(raw_line, ' ');
+    if (!token->raw_line || !token->values)
+    {
+        free(token->raw_line);
+        free(token);
+        return (NULL);
+    }
+    token->count = count_tokens(token->values);
+    token->line = line_number;
+    token->next = NULL;
+    return (token);
+}
+
+void print_tokens(t_token *tokens)
 {
     while (tokens)
     {
-        ft_print_arr(tokens->value);
+        printf(
+            "[LINE %d] (%d tokens)\n",
+            tokens->line,
+            tokens->count);
+        ft_print_arr(tokens->values);
+        printf("\n");
         tokens = tokens->next;
     }
 }
 
 t_token *tokenize(int fd)
 {
-    t_token *tokens;
-    t_token *new_token;
-    char *line;
+    t_token *head;
+    t_token *tail;
+    t_token *new;
+    char    *line;
+    int     line_number;
 
-    tokens = NULL;
+    head = NULL;
+    tail = NULL;
+    line_number = 1;
     while ((line = get_next_line(fd)))
     {
-        new_token = malloc(sizeof(t_token));
-        if (!new_token)
+        new = token_new(line, line_number);
+        free(line);
+        if (!new)
             return (NULL);
-        new_token->value = ft_split(line, ' ');
-        new_token->next = NULL;
-        if (!tokens)
-            tokens = new_token;
+        if (!head)
+        {
+            head = new;
+            tail = new;
+        }
         else
         {
-            t_token *last;
-
-            last = tokens;
-            while (last->next)
-                last = last->next;
-            last->next = new_token;
+            tail->next = new;
+            tail = new;
         }
-        free(line);
+        line_number++;
     }
-    return (tokens);
-}
-#include "cleanup.h"
-
-static void destroy_object(t_object *obj)
-{
-	if (!obj)
-		return ;
-
-	free(obj->data);
-	free(obj);
+    return (head);
 }
 
-static void destroy_objects(t_object *objects)
+void destroy_tokens(t_token *tokens)
 {
-	t_object *next;
+    t_token *next;
 
-	while (objects)
-	{
-		next = objects->next;
-
-		destroy_object(objects);
-
-		objects = next;
-	}
-}
-
-void scene_destroy(t_scene *scene)
-{
-	if (!scene)
-		return ;
-
-	free(scene->ambient);
-	scene->ambient = NULL;
-
-	free(scene->light);
-	scene->light = NULL;
-
-	destroy_objects(scene->objects);
-	scene->objects = NULL;
+    while (tokens)
+    {
+        next = tokens->next;
+        ft_free_arr(tokens->values);
+        free(tokens->raw_line);
+        free(tokens);
+        tokens = next;
+    }
 }
