@@ -19,7 +19,7 @@ Cada fase segue sempre a mesma estrutura:
 
 ### Como trabalhar de forma independente
 
-A regra de ouro: **um contrato de função (nome, tipos de entrada, tipo e significado da saída) é decidido em conjunto antes de qualquer um escrever o corpo da função.** A partir daí, cada elemento pode implementar o seu lado sozinho e testá-lo com dados fictícios, sem esperar pelo código do outro — desde que respeite exatamente a assinatura combinada. Se um contrato precisar de mudar a meio da fase, é uma decisão de dupla, não uma decisão unilateral, porque o outro lado já pode estar a depender dele.
+A regra de ouro: **um contrato de função (nome, tipos de entrada, tipo e significado da saída) é decidido em conjunto antes de qualquer um escrever o corpo da função.** A partir daí, cada elemento pode implementar o seu lado sozinho e testá-lo com dados fictícios, sem esperar pelo códigminilibxo do outro — desde que respeite exatamente a assinatura combinada. Se um contrato precisar de mudar a meio da fase, é uma decisão de dupla, não uma decisão unilateral, porque o outro lado já pode estar a depender dele.
 
 Um aviso geral sobre o livro: ele é escrito em C++ e implementa um *path tracer* estocástico (amostragem aleatória, recursão de raios, materiais). O vosso subject pede um modelo **determinístico** em C puro. Usem o livro para entender a arquitetura e a matemática — nunca para copiar diretamente a sintaxe ou o modelo de shading estocástico na parte obrigatória.
 

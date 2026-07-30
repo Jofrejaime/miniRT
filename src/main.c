@@ -1,17 +1,13 @@
-#include "parse.h"
+#include "minirt.h"
 
 int	main(int argc, char **argv)
 {
-	if (argc != 2)
-	{
-		printf("Error\nnumero de parametros invalido!\n");
-		return (1);
-	}
-	if (!analyze_extent(argv[1], "rt"))
-	{
-		printf("Error\nformato de documento errado\n");
-		return (1);
-	}
-	printf("miniRT: ficheiro .rt valido\n");
-	return (0);
+	t_mlx mlx;
+
+	if (argc == 2 && !argv)
+		return (0);
+	windows_ini(&mlx, 400, 400);
+	while(1)
+		mlx_loop(mlx.win);
+	return(0);
 }

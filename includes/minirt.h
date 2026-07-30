@@ -5,12 +5,15 @@
 #include <stdio.h>
 #include "vec3.h"
 #include "libft.h"
+#include "../src/window/windows.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include "cleanup.h"
 # include "errors.h"
+#include "mlx.h"
+
 
 typedef enum e_obj_type
 {
