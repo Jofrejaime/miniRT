@@ -13,7 +13,7 @@
 
 #include "parse.h"
 
-int analyze_extent(char *filename, char *extensao)
+static int analyze_extent(char *filename, char *extensao)
 {
     size_t  file_size;
     size_t  ext_size;
@@ -32,4 +32,19 @@ int analyze_extent(char *filename, char *extensao)
     if (filename[file_size - 1] != '.')
         return (0);
     return(1);
+}
+
+int	verify_args(int ac, char **av)
+{
+	if (ac != 2)
+	{
+		printf("Error\nNumero de parametros invalido!\n");
+		return (0);
+	}
+	if (!analyze_extent(argv[1], "rt"))
+	{
+		printf("Error\nFormato de documento errado!\n");
+		return (0);
+	}
+	return (1);
 }
