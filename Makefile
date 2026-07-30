@@ -19,7 +19,7 @@ INCLUDES = -Iincludes -I$(LIBFT_DIR) -I$(VEC3_DIR) -Isrc/parse -Isrc/Lexer -I$(M
 MLX_FLAGS = -L$(MLX_DIR) -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
 
 SRCS = src/main.c \
-	src/parse/parse_extent.c \
+	src/parse/parse_args.c \
 	src/parse/parse_ambient.c
 
 OBJS = $(SRCS:.c=.o)

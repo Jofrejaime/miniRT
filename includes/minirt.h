@@ -57,25 +57,11 @@ typedef struct s_scene
     t_object    *objects;
 }   t_scene;
 
-typedef struct s_image
-{
-    void    *img;
-    char    *addr;
-
-    int     bits_per_pixel;
-    int     line_length;
-    int     endian;
-}   t_image;
-
 typedef struct s_rt
 {
     t_scene         scene;
     t_error_info    error;
-
-    void            *mlx;
-    void            *win;
-
-    t_image         image;
+    t_mlx           mlx;
 }   t_rt;
 
 #endif

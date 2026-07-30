@@ -41,7 +41,7 @@ int	verify_args(int ac, char **av)
 		printf("Error\nNumero de parametros invalido!\n");
 		return (0);
 	}
-	if (!analyze_extent(argv[1], "rt"))
+	if (!analyze_extent(av[1], "rt"))
 	{
 		printf("Error\nFormato de documento errado!\n");
 		return (0);
