@@ -14,7 +14,7 @@ INCLUDES = -I$(ROOT)/includes -I$(LIBFT_DIR) -I$(VEC3_DIR) -I$(PARSE_DIR) -I.
 LIBFT = $(LIBFT_DIR)/libft.a
 LIBVEC3 = $(VEC3_DIR)/libvec3.a
 
-SRCS = main_token.c tokenize.c $(PARSE_DIR)/get_next_line.c
+SRCS = main_token.c tokenize.c token_utils.c $(PARSE_DIR)/get_next_line.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

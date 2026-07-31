@@ -10,24 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "token.h"
-void ft_free_arr(char **arr)
-{
-    int i;
-
-    if (!arr)
-        return ;
-
-    i = 0;
-    while (arr[i])
-    {
-        free(arr[i]);
-        i++;
-    }
-
-    free(arr);
-}
 
 static int count_tokens(char **values)
 {
@@ -61,25 +44,35 @@ static t_token *token_new(
     return (token);
 }
 
-void print_tokens(t_token *tokens)
+static void add_token(
+    t_token **head,
+    t_token **tail,
+    char *line,
+    int line_number)
 {
-    while (tokens)
+    t_token *new;
+
+    new = token_new(line, line_number);
+    free(line);
+    if (!new)
+        return ;
+    if (!*head)
     {
-        printf(
-            "[LINE %d] (%d tokens)\n",
-            tokens->line,
-            tokens->count);
-        ft_print_arr(tokens->values);
-        printf("\n");
-        tokens = tokens->next;
+        *head = new;
+        *tail = new;
+    }
+    else
+    {
+        (*tail)->next = new;
+        *tail = new;
     }
 }
+ 
 
 t_token *tokenize(int fd)
 {
     t_token *head;
     t_token *tail;
-    t_token *new;
     char    *line;
     int     line_number;
 
@@ -88,35 +81,14 @@ t_token *tokenize(int fd)
     line_number = 1;
     while ((line = get_next_line(fd)))
     {
-        new = token_new(line, line_number);
-        free(line);
-        if (!new)
-            return (NULL);
-        if (!head)
+        if (ft_strlen(line) == 1)
         {
-            head = new;
-            tail = new;
+            free(line);
+            line_number++;
+            continue;
         }
-        else
-        {
-            tail->next = new;
-            tail = new;
-        }
+        add_token(&head, &tail, line, line_number);
         line_number++;
     }
     return (head);
-}
-
-void destroy_tokens(t_token *tokens)
-{
-    t_token *next;
-
-    while (tokens)
-    {
-        next = tokens->next;
-        ft_free_arr(tokens->values);
-        free(tokens->raw_line);
-        free(tokens);
-        tokens = next;
-    }
 }

@@ -1,7 +1,10 @@
 #ifndef TOKEN_H
 # define TOKEN_H
 
-#include "../../includes/minirt.h"
+//#include "minirt.h"
+#include <stdio.h>
+#include <libft.h>
+#include <fcntl.h>
 
 typedef struct s_token
 {
@@ -14,6 +17,7 @@ typedef struct s_token
 
 void    print_tokens(t_token *tokens);
 t_token *tokenize(int fd);
+char    *get_next_line(int fd);
 void destroy_tokens(t_token *tokens);
 
 #endif
