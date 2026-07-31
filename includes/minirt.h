@@ -10,9 +10,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include "cleanup.h"
-# include "errors.h"
 #include "mlx.h"
+
 
 
 typedef enum e_obj_type
@@ -45,15 +44,23 @@ typedef struct  s_ambient
 
 typedef struct s_light
 {
-    t_vec3  *pos;
+    t_vec3  pos;
     double  ratio;
     t_color color;
 }   t_light;
+
+typedef struct s_camera
+{
+    t_vec3  pos;
+    t_vec3  dir;
+    double  fov;
+}   t_camera;
 
 typedef struct s_scene
 {
     t_ambient   *ambient;
     t_light     *light;
+    t_camera    *camera;
     t_object    *objects;
 }   t_scene;
 
