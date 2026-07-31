@@ -9,9 +9,12 @@
 /*   Updated: 2026/07/28 12:45:20 by lvitorin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdlib.h>
+#include <unistd.h>
 
-
-#include "parse.h"
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 1024
+#endif
 
 char *get_next_line(int fd)
 {
