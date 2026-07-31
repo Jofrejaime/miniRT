@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include "vec3.h"
 #include "libft.h"
-#include "../src/window/windows.h"
+#include "windows.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>

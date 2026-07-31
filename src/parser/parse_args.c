@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 
-#include "parse.h"
+#include "parser.h"
 
 static int analyze_extent(char *filename, char *extensao)
 {

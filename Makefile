@@ -14,13 +14,13 @@ LIBVEC3 = $(VEC3_DIR)/libvec3.a
 LIBMLX = $(MLX_DIR)/libmlx_Linux.a
 LIBWINDOW = $(WINDOWS_DIR)/libwindow.a
 
-INCLUDES = -Iincludes -I$(LIBFT_DIR) -I$(VEC3_DIR) -Isrc/parse -Isrc/Lexer -I$(MLX_DIR) -I$(WINDOWS_DIR)
+INCLUDES = -Iincludes -I$(LIBFT_DIR) -I$(VEC3_DIR) -Isrc/parser -Isrc/Lexer -I$(MLX_DIR) -I$(WINDOWS_DIR)
 
 MLX_FLAGS = -L$(MLX_DIR) -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
 
 SRCS = src/main.c \
-	src/parse/parse_args.c \
-	src/parse/parse_ambient.c
+	src/parser/parse_args.c \
+	src/parser/parse_ambient.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -45,7 +45,7 @@ $(NAME): $(LIBFT) $(LIBVEC3) $(LIBWINDOW) $(LIBMLX) $(OBJS)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 parse:
-	$(MAKE) -C src/parse
+	$(MAKE) -C src/parser
 
 clean:
 	$(RM) $(OBJS)
@@ -53,17 +53,17 @@ clean:
 	$(MAKE) -C $(VEC3_DIR) clean
 	$(MAKE) -C $(WINDOWS_DIR) clean
 	$(MAKE) -C $(MLX_DIR) clean
-	$(MAKE) -C src/parse clean
+	$(MAKE) -C src/parser clean
 
 fclean: clean
 	$(RM) $(NAME)
 	$(MAKE) -C $(LIBFT_DIR) fclean
 	$(MAKE) -C $(VEC3_DIR) fclean
 	$(MAKE) -C $(WINDOWS_DIR) fclean
-	$(MAKE) -C src/parse fclean
+	$(MAKE) -C src/parser fclean
 
 re: fclean all
 
 bonus: all
 
-.PHONY: all clean fclean re bonus parse
+.PHONY: all clean fclean re bonus parser

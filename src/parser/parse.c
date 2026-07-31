@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 
-#include "parse.h"
+#include "parser.h"
 
 static char *reset_space(char *line)
 {
