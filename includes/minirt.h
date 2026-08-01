@@ -11,6 +11,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include "mlx.h"
+#include "objects.h"
 
 
 

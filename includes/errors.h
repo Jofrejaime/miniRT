@@ -39,7 +39,9 @@ typedef enum e_error
     ERR_INVALID_SPHERE,
     ERR_INVALID_PLANE,
     ERR_INVALID_CYLINDER,
-    ERR_UNKNOWN
+    ERR_UNKNOWN,
+    ERR_INVALID_DIAMETER,
+    ERR_INVALID_ARGUMENT_COUNT
 }   t_error;
 
 typedef struct s_error_info

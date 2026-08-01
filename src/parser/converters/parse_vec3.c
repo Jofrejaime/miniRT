@@ -1,17 +1,5 @@
 #include "parser.h"
 
-static int parse_component(double *component, char **str, int part)
-{
-    t_error err;
-
-    err = parse_double(component, str[part]);
-    if (err)
-    {
-        ft_free_arr(str);
-        return (0);
-    }
-    return (1);
-}
 t_error parse_vec3(t_vec3 *vec, char *str)
 {
     char    **parts;
