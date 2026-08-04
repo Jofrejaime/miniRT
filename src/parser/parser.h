@@ -8,9 +8,8 @@
 
 t_ambient	*analyse_ambiente(char **line);
 int parse_map(int fd, t_scene *scene);
-int parse_color(int *r, int *g, int *b, char *line);
 int	verify_args(int ac, char **av);
-
+t_error validate_token(t_token *token);
 
 /* Core */
 t_error parse_scene(t_rt *rt, t_token *tokens);
@@ -35,5 +34,8 @@ t_error parse_sphere(t_rt *rt, t_token *token);
 t_error parse_plane(t_rt *rt, t_token *token);
 t_error parse_cylinder(t_rt *rt, t_token *token);
 
+/*Utils */
+int valid_orientation(t_vec3 v);
+int is_zero_vector(t_vec3 v);
 
 #endif

@@ -19,17 +19,25 @@ t_object *object_new(
     return (obj);
 }
 
-void object_add(
-    t_scene *scene,
-    t_object *new_object)
+void    object_add(
+            t_object **objects,
+            t_object *new_object)
 {
-    if (!scene->objects)
+    t_object *last;
+
+    if (!objects || !new_object)
+        return ;
+
+    if (!*objects)
     {
-        scene->objects = new_object;
-        scene->last_object = new_object;
+        *objects = new_object;
         return ;
     }
 
-    scene->last_object->next = new_object;
-    scene->last_object = new_object;
+    last = *objects;
+
+    while (last->next)
+        last = last->next;
+
+    last->next = new_object;
 }
