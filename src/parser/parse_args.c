@@ -13,38 +13,47 @@
 
 #include "parser.h"
 
-static int analyze_extent(char *filename, char *extensao)
+static int check_extension(
+    char *filename,
+    char *extension)
 {
-    size_t  file_size;
-    size_t  ext_size;
+    size_t file_len;
+    size_t ext_len;
 
-    file_size = ft_strlen(filename);
-    ext_size = ft_strlen(extensao);
-    if (ext_size >= file_size)
+    file_len = ft_strlen(filename);
+    ext_len = ft_strlen(extension);
+
+    if (file_len <= ext_len + 1)
         return (0);
-    while (ext_size > 0)
+
+    while (ext_len)
     {
-        if (filename[file_size - 1] != extensao[ext_size - 1])
+        if (filename[file_len - 1] != extension[ext_len - 1])
             return (0);
-        file_size--;
-        ext_size--;
+
+        file_len--;
+        ext_len--;
     }
-    if (filename[file_size - 1] != '.')
-        return (0);
-    return(1);
+
+    return (filename[file_len - 1] == '.');
 }
 
-int	verify_args(int ac, char **av)
+t_error	verify_args(int ac, char **av)
 {
+    int fd;
+
 	if (ac != 2)
-	{
-		printf("Error\nNumero de parametros invalido!\n");
-		return (0);
-	}
-	if (!analyze_extent(av[1], "rt"))
+    return(ERR_INVALID_ARGUMENT_COUNT);
+    if (fd < 0)
+    {
+        printf("Error\nErro ao abrir o arquivo!\n");
+        return (ERR_FILE_OPEN);
+    }
+	if (!check_extension(av[1], "rt"))
 	{
 		printf("Error\nFormato de documento errado!\n");
-		return (0);
+		return (ERR_INVALID_FILE_FORMAT);
 	}
-	return (1);
+    close(fd);
+	return (ERR_NONE);
 }
