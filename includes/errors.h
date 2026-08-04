@@ -35,6 +35,7 @@ typedef enum e_error
     ERR_INVALID_FOV,
     ERR_INVALID_VECTOR,
     ERR_INVALID_COLOR,
+    ERR_INVALID_ORIENTATION,
     /* Objects */
     ERR_INVALID_SPHERE,
     ERR_INVALID_PLANE,

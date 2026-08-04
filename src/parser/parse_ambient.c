@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "parser.h"
 
 int parse_color(int *r, int *g, int *b, char *line)
 {

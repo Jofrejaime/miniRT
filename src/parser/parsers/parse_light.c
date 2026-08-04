@@ -17,33 +17,26 @@ t_error parse_light(
 
     if (rt->scene.light)
         return (ERR_DUPLICATE_LIGHT);
-
     light = malloc(sizeof(t_light));
     if (!light)
         return (ERR_MALLOC);
-
     err = parse_vec3(
             &light->pos,
             token->values[1]);
     if (err)
         return (free(light), err);
-
     err = parse_double(
             &light->ratio,
             token->values[2]);
     if (err)
         return (free(light), err);
-
     if (!valid_ratio(light->ratio))
         return (free(light), ERR_INVALID_RATIO);
-
     err = parse_color(
             &light->color,
             token->values[3]);
     if (err)
         return (free(light), err);
-
     rt->scene.light = light;
-
     return (ERR_NONE);
 }

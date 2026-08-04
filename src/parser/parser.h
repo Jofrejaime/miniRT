@@ -4,6 +4,7 @@
 # include "minirt.h"
 # include "token.h"
 # include "errors.h"
+# include "vec3.h"
 
 t_ambient	*analyse_ambiente(char **line);
 int parse_map(int fd, t_scene *scene);
@@ -33,5 +34,6 @@ t_error parse_light(t_rt *rt, t_token *token);
 t_error parse_sphere(t_rt *rt, t_token *token);
 t_error parse_plane(t_rt *rt, t_token *token);
 t_error parse_cylinder(t_rt *rt, t_token *token);
+
 
 #endif
