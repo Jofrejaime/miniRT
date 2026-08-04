@@ -1,5 +1,6 @@
 #ifndef ERRORS_H
 # define ERRORS_H
+
 # define RETURN_ERROR(ctx, code, id, val, msg) \
 do { \
     set_error( \

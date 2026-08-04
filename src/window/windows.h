@@ -17,6 +17,7 @@ typedef struct s_mlx
     void    *mlx;
     void    *win;
     t_img   image;
+    
 }   t_mlx;
 
 int windows_ini(t_mlx *mlx, int width, int height);

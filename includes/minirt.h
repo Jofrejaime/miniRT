@@ -12,6 +12,7 @@
 #include <fcntl.h>
 #include "mlx.h"
 #include "objects.h"
+# include "errors.h"
 
 
 typedef struct s_color

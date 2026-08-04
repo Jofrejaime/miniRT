@@ -1,28 +1,42 @@
 #include "cleanup.h"
 #include "mlx.h"
 
+static void destroy_window(t_mlx *mlx)
+{
+    if (!mlx)
+        return ;
+    if (mlx->win)
+    {
+        mlx_destroy_window(
+            mlx->mlx,
+            mlx->win);
+        mlx->win = NULL;
+    }
+}
+
+static void destroy_image(t_mlx *mlx)
+{
+    if (!mlx)
+        return ;
+    if (mlx->image.mlx_img)
+    {
+        mlx_destroy_image(
+            mlx->mlx,
+            mlx->image.mlx_img);
+        mlx->image.mlx_img = NULL;
+    }
+}
+
 void rt_destroy(t_rt *rt)
 {
-	if (!rt)
-		return ;
-	scene_destroy(&rt->scene);
-	if (rt->image.img)
-	{
-		mlx_destroy_image(rt->mlx, rt->image.img);
-		rt->image.img = NULL;
-	}
-	if (rt->win)
-	{
-		mlx_destroy_window(rt->mlx, rt->win);
-		rt->win = NULL;
-	}
+    if (!rt)
+        return ;
+    scene_destroy(&rt->scene);
+    destroy_image(&rt->mlx);
+    destroy_window(&rt->mlx);
 #ifdef __linux__
-	if (rt->mlx)
-		mlx_destroy_display(rt->mlx);
+    if (rt->mlx.mlx)
+        mlx_destroy_display(rt->mlx.mlx);
 #endif
-	if (rt->mlx)
-	{
-		free(rt->mlx);
-		rt->mlx = NULL;
-	}
-}
+    rt->mlx.mlx = NULL;
+} 
