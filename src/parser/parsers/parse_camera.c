@@ -1,14 +1,5 @@
 #include "parser.h"
 
-static int valid_orientation(t_vec3 dir)
-{
-    return (
-        dir.x >= -1.0 && dir.x <= 1.0 &&
-        dir.y >= -1.0 && dir.y <= 1.0 &&
-        dir.z >= -1.0 && dir.z <= 1.0
-    );
-}
-
 static int valid_fov(double fov)
 {
     return (fov > 0.0 && fov < 180.0);

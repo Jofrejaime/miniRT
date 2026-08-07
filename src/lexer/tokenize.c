@@ -22,11 +22,23 @@ static int count_tokens(char **values)
     return (i);
 }
 
+static void strip_newline(char *line)
+{
+    int i;
+
+    i = 0;
+    while (line[i])
+        i++;
+    if (i > 0 && line[i - 1] == '\n')
+        line[i - 1] = '\0';
+}
+
 static t_token *token_new(
     char *raw_line,
     int line_number)
 {
     t_token *token;
+
     token = malloc(sizeof(t_token));
     if (!token)
         return (NULL);
@@ -35,6 +47,7 @@ static t_token *token_new(
     if (!token->raw_line || !token->values)
     {
         free(token->raw_line);
+        ft_free_arr(token->values);
         free(token);
         return (NULL);
     }
@@ -81,7 +94,8 @@ t_token *tokenize(int fd)
     line_number = 1;
     while ((line = get_next_line(fd)))
     {
-        if (ft_strlen(line) == 1)
+        strip_newline(line);
+        if (line[0] == '\0')
         {
             free(line);
             line_number++;

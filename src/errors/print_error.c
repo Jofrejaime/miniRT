@@ -9,9 +9,7 @@ void print_error(t_error_info *err)
 		return ;
 	ft_putendl_fd("Error", STDERR_FILENO);
 	if (err->line > 0)
-		dprintf(STDERR_FILENO,
-		"Line: %d\n",
-		err->line);
+		dprintf(STDERR_FILENO, "Line: %d\n", err->line);
 	if (err->identifier)
 		dprintf(STDERR_FILENO,
 		"Element: %s\n",

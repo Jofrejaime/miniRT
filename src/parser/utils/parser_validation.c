@@ -17,13 +17,11 @@ t_error validate_scene(t_rt *rt)
 
 t_error validate_token(t_token *token)
 {
-    if (token->count <= 0)
-        return (ERR_INVALID_TOKEN_COUNT);
     if (!token)
         return (ERR_INVALID_TOKEN);
-    if (!token->values)
+    if (!token->values || !token->values[0])
         return (ERR_INVALID_TOKEN);
-    if (!token->values[0])
-        return (ERR_INVALID_TOKEN);
+    if (token->count <= 0)
+        return (ERR_INVALID_TOKEN_COUNT);
     return (ERR_NONE);
 }

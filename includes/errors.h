@@ -50,7 +50,8 @@ typedef enum e_error
     ERR_INVALID_HEIGHT,
     /*TOKEN*/
     ERR_INVALID_TOKEN,
-    ERR_INVALID_TOKEN_COUNT
+    ERR_INVALID_TOKEN_COUNT,
+    ERR_INVALID_NUMBER
 }   t_error;
 
 typedef struct s_error_info

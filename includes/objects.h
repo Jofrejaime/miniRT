@@ -1,6 +1,18 @@
 #ifndef OBJECTS_H
 # define OBJECTS_H
 
+# include "vec3.h"
+
+typedef struct s_color
+{
+    int r;
+    int g;
+    int b;
+}   t_color;
+
+typedef struct s_scene t_scene;
+
+
 typedef enum e_obj_type
 {
     OBJ_SPHERE,
@@ -12,7 +24,7 @@ typedef struct s_object
 {
     t_obj_type  type;
     void        *data;
-    t_color     color;
+    t_color         color;
     struct s_object *next;
 }   t_object;
 
@@ -48,7 +60,7 @@ t_object *create_sphere_object(
     t_color color);
 
 void object_add(
-    t_scene *scene,
+    t_object **objects,
     t_object *new_object);
 
 #endif

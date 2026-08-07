@@ -6,9 +6,12 @@
 # include "errors.h"
 # include "vec3.h"
 
+void	ft_free_arr(char **arr);
+int		ft_arrlen(char **arr);
+
 t_ambient	*analyse_ambiente(char **line);
 int parse_map(int fd, t_scene *scene);
-int	verify_args(int ac, char **av);
+t_error	verify_args(int ac, char **av);
 t_error validate_token(t_token *token);
 
 /* Core */
@@ -21,6 +24,7 @@ t_error expect_token_count(t_token *token, int expected);
 t_error validate_scene(t_rt *rt);
 
 /* Converters */
+t_error parse_int(int *value, char *str);
 t_error parse_double(double *value, char *str);
 t_error parse_vec3(t_vec3 *vec, char *str);
 t_error parse_color(t_color *color, char *str);

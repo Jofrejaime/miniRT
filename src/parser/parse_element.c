@@ -21,17 +21,17 @@ t_error parse_element(t_rt *rt, t_token *token)
     err = validate_token(token);
     if (err != ERR_NONE)
         return (err);
-    if (!ft_strcmp(id, "A") )
+    if (!ft_strncmp(id, "A", 2))
         return (parse_ambient(rt, token));
-    else if (!ft_strcmp(id, "C"))
+    else if (!ft_strncmp(id, "C", 2))
         return (parse_camera(rt, token));
-    else if (!ft_strcmp(id, "L"))
+    else if (!ft_strncmp(id, "L", 2))
         return (parse_light(rt, token));
-    else if (!ft_strcmp(id, "sp"))
+    else if (!ft_strncmp(id, "sp", 3))
         return (parse_sphere(rt, token));
-    else if (!ft_strcmp(id, "pl"))
+    else if (!ft_strncmp(id, "pl", 3))
         return (parse_plane(rt, token));
-    else if (!ft_strcmp(id, "cy"))
+    else if (!ft_strncmp(id, "cy", 3))
         return (parse_cylinder(rt, token));
     else
         return (ERR_UNKNOWN_IDENTIFIER);

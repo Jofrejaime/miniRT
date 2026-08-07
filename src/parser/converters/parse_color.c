@@ -38,8 +38,8 @@ t_error parse_color(t_color *color, char *str)
     if (!parts)
         return (ERR_MALLOC);
     if (ft_arrlen(parts) != 3)
-        return (ft_free_array(parts), ERR_INVALID_COLOR);
+        return (ft_free_arr(parts), ERR_INVALID_COLOR);
     err = add_color(color, parts[0], parts[1], parts[2]);
-    ft_free_array(parts);
+    ft_free_arr(parts);
     return (err);
 }

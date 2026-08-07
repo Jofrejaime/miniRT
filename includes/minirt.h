@@ -10,17 +10,10 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <math.h>
 #include "mlx.h"
 #include "objects.h"
 # include "errors.h"
-
-
-typedef struct s_color
-{
-    int r;
-    int g;
-    int b;
-}   t_color;
 
 typedef struct  s_ambient
 {
@@ -35,11 +28,21 @@ typedef struct s_light
     t_color color;
 }   t_light;
 
+typedef struct s_ray
+{
+    t_vec3 origin;
+    t_vec3 dir;
+}   t_ray;
+
 typedef struct s_camera
 {
     t_vec3  pos;
     t_vec3  dir;
     double  fov;
+    t_vec3  right;
+    t_vec3  up;
+    double  half_w;
+    double  half_h;
 }   t_camera;
 
 typedef struct s_scene

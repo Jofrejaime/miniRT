@@ -44,6 +44,7 @@ t_error	verify_args(int ac, char **av)
 
 	if (ac != 2)
     return(ERR_INVALID_ARGUMENT_COUNT);
+    fd = open(av[1], O_RDONLY);
     if (fd < 0)
     {
         printf("Error\nErro ao abrir o arquivo!\n");

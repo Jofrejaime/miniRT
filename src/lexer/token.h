@@ -18,6 +18,8 @@ typedef struct s_token
 void    print_tokens(t_token *tokens);
 t_token *tokenize(int fd);
 char    *get_next_line(int fd);
-void destroy_tokens(t_token *tokens);
+void    destroy_tokens(t_token *tokens);
+void    ft_free_arr(char **arr);
+int     ft_arrlen(char **arr);
 
 #endif

@@ -12,8 +12,8 @@
 
 NAME = libft.a
 
-SRC = ft_isdigit.c ft_isfloat.c ft_split.c ft_strlen.c ft_strdup.c ft_memcpy.c ft_atoi.c ft_matrizlen.c \
-	ft_putstr_fd.c ft_putchar_fd.c ft_print_arr.c
+SRC = ft_isdigit.c ft_isfloat.c ft_split.c ft_strlen.c ft_strdup.c ft_memcpy.c ft_memset.c ft_atoi.c ft_matrizlen.c \
+	ft_putstr_fd.c ft_putchar_fd.c ft_print_arr.c ft_bzero.c ft_putendl_fd.c ft_strncmp.c
 
 OBJ = ${SRC:.c=.o}
 
@@ -28,7 +28,7 @@ $(NAME): ${OBJ}
 
 all: ${NAME}
 
-bonus: all
+bonus: allRun
 
 clean:
 	${RM} ${OBJ}

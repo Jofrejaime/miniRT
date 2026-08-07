@@ -1,9 +1,5 @@
 #include "parser.h"
 
-static int valid_diameter(double diameter)
-{
-    return (diameter > 0.0);
-}
 t_error parse_sphere(
     t_rt *rt,
     t_token *token)

@@ -3,6 +3,8 @@
 
 #include "mlx.h"
 
+typedef struct s_rt t_rt;
+
 typedef struct s_img
 {
     void    *mlx_img;
@@ -20,6 +22,6 @@ typedef struct s_mlx
     
 }   t_mlx;
 
-int windows_ini(t_mlx *mlx, int width, int height);
+int windows_ini(t_mlx *mlx, int width, int height, t_rt *rt);
 
 #endif

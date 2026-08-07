@@ -18,6 +18,18 @@ void ft_free_arr(char **arr)
     free(arr);
 }
 
+int	ft_arrlen(char **arr)
+{
+    int i;
+
+    if (!arr)
+        return (0);
+    i = 0;
+    while (arr[i])
+        i++;
+    return (i);
+}
+
 void destroy_tokens(t_token *tokens)
 {
     t_token *next;
