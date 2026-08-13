@@ -46,6 +46,5 @@ int	windows_ini(t_mlx *mlx, int width, int height, t_rt *rt)
 	mlx_hook(mlx->win, 2, 1L << 0, handle_keypress, rt);
 	mlx_hook(mlx->win, 17, 0, handle_close, rt);
 	mlx_hook(mlx->win, 12, 1L << 15, handle_expose, rt);
-	mlx_loop(mlx->mlx);
 	return (0);
 }

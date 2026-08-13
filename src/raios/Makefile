@@ -106,7 +106,7 @@ $(OBJS_DIR)/%.o: %.c
 
 $(OBJS_DIR)/%.o: ../../src/window/%.c
 	@echo "[Compiling] $<"
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) -Wno-incompatible-pointer-types $(INCLUDES) -c $< -o $@
 
 $(OBJS_DIR)/%.o: ../../src/lib_vec3/%.c
 	@echo "[Compiling] $<"

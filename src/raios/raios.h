@@ -5,6 +5,7 @@
 # include "windows.h"
 # include "vec3.h"
 # include <math.h>
+#include "cleanup.h"
 
 /* camera_build_basis.c */
 void    camera_build_basis(t_camera *cam, double aspect_ratio);
@@ -12,9 +13,9 @@ t_ray   camera_get_ray(t_camera *cam, int px, int py, int width, int height);
 void    render_test_gradient(t_camera *cam, t_img *img, int width, int height);
 
 /* Wrapper for windows_ini to match expected function name */
-static inline int window_init(t_mlx *mlx, int width, int height)
+static inline int window_init(t_mlx *mlx, int width, int height, t_rt *rt)
 {
-    return (windows_ini(mlx, width, height));
+    return (windows_ini(mlx, width, height, rt));
 }
 
 /* img_put_pixel - putpixel function for image */

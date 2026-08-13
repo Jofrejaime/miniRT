@@ -45,15 +45,20 @@ int	main(int argc, char **argv)
 		fprintf(stderr, "Error parsing scene: %d\n", rt.error.code);
 		if (rt.error.message)
 			fprintf(stderr, "Message: %s\n", rt.error.message);
+		destroy_tokens(tokens);
+		scene_destroy(&rt.scene);
 		return (1);
 	}
+	destroy_tokens(tokens);
 	if (!rt.scene.camera)
 	{
 		fprintf(stderr, "Error: No camera defined in scene\n");
+		scene_destroy(&rt.scene);
 		return (1);
 	}
-	if (window_init(&rt.mlx, 800, 600) == -1)
+	if (window_init(&rt.mlx, 800, 600, &rt) == -1)
 		return (1);
+	camera_build_basis(rt.scene.camera, 800.0 / 600.0);
 	render_test_gradient(rt.scene.camera, &rt.mlx.image, 800, 600);
 	mlx_put_image_to_window(rt.mlx.mlx, rt.mlx.win, rt.mlx.image.mlx_img, 0, 0);
 	mlx_loop(rt.mlx.mlx);
