@@ -1,4 +1,3 @@
-
 # 🚀 miniRT — Roadmap de Implementação
 
 > *Este projeto é um Ray Tracer em C desenvolvido do zero utilizando a MiniLibX como parte do currículo da 42.*
@@ -65,6 +64,7 @@ $(NAME): $(OBJS) libft/libft.a
 bonus: CFLAGS += -DBONUS=1
 bonus: all
 
+```
 
 #### 📚 Referências
 
