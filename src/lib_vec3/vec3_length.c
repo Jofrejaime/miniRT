@@ -6,17 +6,16 @@
 /*   By: lvitorin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 14:18:22 by lvitorin          #+#    #+#             */
-/*   Updated: 2026/07/27 14:18:24 by lvitorin         ###   ########.fr       */
+/*   Updated: 2026/09/04 15:36:11 by lvitorin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "vec3.h"
 
-double  vec3_length(t_vec3 v)
+double	vec3_length(t_vec3 v)
 {
-    double result;
+	double	result;
 
-    result = sqrt(vec3_dot(v, v));
-    return (result);
+	result = sqrt(vec3_dot(v, v));
+	return (result);
 }

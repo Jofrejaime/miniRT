@@ -6,20 +6,18 @@
 /*   By: lvitorin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 14:17:53 by lvitorin          #+#    #+#             */
-/*   Updated: 2026/07/23 14:17:57 by lvitorin         ###   ########.fr       */
+/*   Updated: 2026/09/04 15:32:25 by lvitorin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "vec3.h"
 
-t_vec3 vec3_add(t_vec3 a, t_vec3 b)
+t_vec3	vec3_add(t_vec3 a, t_vec3 b)
 {
-    t_vec3 result;
+	t_vec3	result;
 
-    result.x = a.x + b.x;
-    result.y = a.y + b.y;
-    result.z = a.z + b.z;
-
-    return (result);
+	result.x = a.x + b.x;
+	result.y = a.y + b.y;
+	result.z = a.z + b.z;
+	return (result);
 }

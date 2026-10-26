@@ -6,20 +6,20 @@
 /*   By: lvitorin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/29 12:53:50 by lvitorin          #+#    #+#             */
-/*   Updated: 2026/07/29 12:53:52 by lvitorin         ###   ########.fr       */
+/*   Updated: 2026/09/14 16:03:04 by lvitorin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void    ft_print_arr(char **arr)
+void	ft_print_arr(char **arr)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (arr[i])
-    {
-        ft_putstr_fd(arr[i], 1);
-        ft_putchar_fd('\n', 1);
-        i++;
-    }
+	i = 0;
+	while (arr[i])
+	{
+		ft_putstr_fd(arr[i], 1);
+		ft_putchar_fd('\n', 1);
+		i++;
+	}
 }

@@ -6,19 +6,18 @@
 /*   By: lvitorin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/29 10:55:39 by lvitorin          #+#    #+#             */
-/*   Updated: 2026/07/29 10:55:41 by lvitorin         ###   ########.fr       */
+/*   Updated: 2026/09/14 16:01:39 by lvitorin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-int ft_matrizlen(char **matriz)
+int	ft_matrizlen(char **matriz)
 {
-    int i;
+	int	i;
 
-    if (!matriz)
-        return (0);
-    i = 0;
-    while (matriz[i])
-        i++;
-    return (i);
+	if (!matriz)
+		return (0);
+	i = 0;
+	while (matriz[i])
+		i++;
+	return (i);
 }

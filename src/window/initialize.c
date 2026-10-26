@@ -1,5 +1,17 @@
-#include "windows.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   initialize.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lvitorin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/04 16:57:22 by lvitorin          #+#    #+#             */
+/*   Updated: 2026/09/04 16:57:24 by lvitorin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cleanup.h"
+#include "windows.h"
 
 static int	handle_keypress(int keycode, void *param)
 {
@@ -17,9 +29,8 @@ static int	handle_close(void *param)
 	exit(0);
 }
 
-static int	handle_expose(void *param)
+static int	handle_expose(void)
 {
-	(void)param;
 	return (0);
 }
 
@@ -39,10 +50,11 @@ int	windows_ini(t_mlx *mlx, int width, int height, t_rt *rt)
 	{
 		mlx_destroy_window(mlx->mlx, mlx->win);
 		mlx_destroy_display(mlx->mlx);
+		free(mlx->mlx);
 		return (-1);
 	}
-	mlx->image.addr = mlx_get_data_addr(mlx->image.mlx_img,
-			&mlx->image.bpp, &mlx->image.line_len, &mlx->image.endian);
+	mlx->image.addr = mlx_get_data_addr(mlx->image.mlx_img, &mlx->image.bpp,
+			&mlx->image.line_len, &mlx->image.endian);
 	mlx_hook(mlx->win, 2, 1L << 0, handle_keypress, rt);
 	mlx_hook(mlx->win, 17, 0, handle_close, rt);
 	mlx_hook(mlx->win, 12, 1L << 15, handle_expose, rt);

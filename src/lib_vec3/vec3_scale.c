@@ -10,17 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "vec3.h"
 
-
-t_vec3  vec3_scale(t_vec3 v, double s)
+t_vec3	vec3_scale(t_vec3 v, double s)
 {
-        t_vec3 result;
+	t_vec3	result;
 
-        result.x = v.x * s;
-        result.y = v.y * s;
-        result.z = v.z * s;
-
-    return (result);
+	result.x = v.x * s;
+	result.y = v.y * s;
+	result.z = v.z * s;
+	return (result);
 }

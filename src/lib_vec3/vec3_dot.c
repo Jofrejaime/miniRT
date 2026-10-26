@@ -6,18 +6,16 @@
 /*   By: lvitorin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 13:55:59 by lvitorin          #+#    #+#             */
-/*   Updated: 2026/07/27 13:56:01 by lvitorin         ###   ########.fr       */
+/*   Updated: 2026/09/04 15:34:34 by lvitorin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "vec3.h"
 
-
-double  vec3_dot(t_vec3 a, t_vec3 b)
+double	vec3_dot(t_vec3 a, t_vec3 b)
 {
-    double result;
+	double	result;
 
-    result = (a.x *  b.x) + (a.y * b.y) + (a.z * b.z);
-    return (result);
+	result = (a.x * b.x) + (a.y * b.y) + (a.z * b.z);
+	return (result);
 }

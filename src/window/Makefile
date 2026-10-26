@@ -1,26 +1,37 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: lvitorin <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/09/04 16:57:22 by lvitorin          #+#    #+#              #
+#    Updated: 2026/09/04 16:57:24 by lvitorin         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = libwindow.a
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
-CFLAGS_WINDOW = -Wall -Wextra -Werror -Wno-incompatible-pointer-types
-AR = ar rcs
-RM = rm -f
+SRC = initialize.c
 
+OBJ = $(SRC:.c=.o)
+
+CC = cc
+RM = rm -f
+AR = ar rcs
+CFLAGS = -Wall -Wextra -Werror -Wno-incompatible-pointer-types
 INCLUDES = -I. -I../../includes -I../../minilibx-linux -I../../src/lib_vec3 -I../../minilibft
 
-SRCS = $(wildcard *.c)
-OBJS = $(SRCS:.c=.o)
+$(NAME): $(OBJ)
+	$(AR) $(NAME) $(OBJ)
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(AR) $(NAME) $(OBJS)
-
 %.o: %.c
-	$(CC) $(CFLAGS_WINDOW) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJ)
 
 fclean: clean
 	$(RM) $(NAME)

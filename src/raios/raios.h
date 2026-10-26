@@ -1,32 +1,45 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raios.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lvitorin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/04 16:39:38 by lvitorin          #+#    #+#             */
+/*   Updated: 2026/09/04 16:39:40 by lvitorin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef RAIOS_H
 # define RAIOS_H
 
+# include "cleanup.h"
 # include "minirt.h"
-# include "windows.h"
 # include "vec3.h"
+# include "windows.h"
 # include <math.h>
-#include "cleanup.h"
 
 /* camera_build_basis.c */
-void    camera_build_basis(t_camera *cam, double aspect_ratio);
-t_ray   camera_get_ray(t_camera *cam, int px, int py, int width, int height);
-void    render_test_gradient(t_camera *cam, t_img *img, int width, int height);
+void				camera_build_basis(t_camera *cam, double aspect_ratio);
+t_ray				camera_get_ray(t_camera *cam, int px, int py);
+void				render_test_gradient(t_camera *cam, t_img *img, int width,
+						int height);
 
 /* Wrapper for windows_ini to match expected function name */
-static inline int window_init(t_mlx *mlx, int width, int height, t_rt *rt)
+static inline int	window_init(t_mlx *mlx, int width, int height, t_rt *rt)
 {
-    return (windows_ini(mlx, width, height, rt));
+	return (windows_ini(mlx, width, height, rt));
 }
 
 /* img_put_pixel - putpixel function for image */
-static inline void img_put_pixel(t_img *img, int x, int y, int color)
+static inline void	img_put_pixel(t_img *img, int x, int y, int color)
 {
-    char    *dst;
-    int     offset;
+	char	*dst;
+	int		offset;
 
-    offset = (y * img->line_len) + (x * (img->bpp / 8));
-    dst = img->addr + offset;
-    *(unsigned int *)dst = color;
+	offset = (y * img->line_len) + (x * (img->bpp / 8));
+	dst = img->addr + offset;
+	*(unsigned int *)dst = color;
 }
 
 #endif

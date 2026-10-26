@@ -1,144 +1,92 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   intersect_cylinder.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jmutumbu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/18 15:40:39 by jmutumbu          #+#    #+#             */
+/*   Updated: 2026/08/18 15:40:40 by jmutumbu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "hit.h"
 
-static t_quadratic cylinder_equation(
-    t_ray ray,
-    t_cylinder *cy)
+static int	try_side_hit(t_ray ray, t_cylinder *cy, double *t_out,
+		t_vec3 *normal_out)
 {
-    t_quadratic    eq;
-    t_vec3         oc;
-    t_vec3         oc_perp;
-    t_vec3         dir_perp;
+	double	t;
 
-    oc = vec3_sub(ray.origin, cy->center);
-
-    oc_perp = vec3_sub(
-        oc,
-        vec3_scale(cy->axis,
-            vec3_dot(oc, cy->axis)));
-
-    dir_perp = vec3_sub(
-        ray.dir,
-        vec3_scale(cy->axis,
-            vec3_dot(ray.dir, cy->axis)));
-
-    eq.a = vec3_dot(dir_perp, dir_perp);
-
-    eq.b = 2.0
-        * vec3_dot(oc_perp, dir_perp);
-
-    eq.c = vec3_dot(oc_perp, oc_perp)
-        - (cy->radius * cy->radius);
-
-    eq.delta = (eq.b * eq.b)
-        - (4.0 * eq.a * eq.c);
-
-    return (eq);
+	t = cylinder_side_distance(ray, cy);
+	if (t < EPSILON)
+		return (0);
+	*t_out = t;
+	*normal_out = cylinder_side_normal(cy, ray_at(ray, t));
+	return (1);
 }
 
-static double solve_cylinder(
-    t_quadratic eq)
+static int	try_top_cap_hit(t_ray ray, t_cylinder *cy, double *t_out,
+		t_vec3 *normal_out)
 {
-    double t1;
-    double t2;
+	t_vec3	cap_center;
+	double	t;
 
-    if (eq.delta < 0)
-        return (-1);
-
-    t1 = (-eq.b - sqrt(eq.delta))
-        / (2.0 * eq.a);
-
-    t2 = (-eq.b + sqrt(eq.delta))
-        / (2.0 * eq.a);
-
-    return (smallest_positive_root(t1, t2));
+	cap_center = vec3_add(cy->center, vec3_scale(cy->axis, cy->height / 2.0));
+	t = cylinder_cap_t(ray, cy, cap_center);
+	if (t < EPSILON)
+		return (0);
+	*t_out = t;
+	*normal_out = cy->axis;
+	return (1);
 }
 
-static int inside_height(
-    t_cylinder *cy,
-    t_vec3 point)
+static int	try_bottom_cap_hit(t_ray ray, t_cylinder *cy, double *t_out,
+		t_vec3 *normal_out)
 {
-    double proj;
+	t_vec3	cap_center;
+	double	t;
 
-    proj = vec3_dot(
-        vec3_sub(point, cy->center),
-        cy->axis);
-
-    return (
-        proj >= -(cy->height / 2.0)
-        &&
-        proj <= (cy->height / 2.0)
-    );
+	cap_center = vec3_sub(cy->center, vec3_scale(cy->axis, cy->height / 2.0));
+	t = cylinder_cap_t(ray, cy, cap_center);
+	if (t < EPSILON)
+		return (0);
+	*t_out = t;
+	*normal_out = vec3_scale(cy->axis, -1);
+	return (1);
 }
 
-static double cylinder_side_distance(
-    t_ray ray,
-    t_cylinder *cy)
+static void	update_best(double candidate, double *best,
+				t_vec3 *normal, t_vec3 cand_norm)
 {
-    t_quadratic eq;
-    double      t;
-    t_vec3      point;
-
-    eq = cylinder_equation(ray, cy);
-
-    t = solve_cylinder(eq);
-
-    if (t < EPSILON)
-        return (-1);
-
-    point = ray_at(ray, t);
-
-    if (!inside_height(cy, point))
-        return (-1);
-
-    return (t);
+	if (candidate < EPSILON)
+		return ;
+	if (*best < EPSILON || candidate < *best)
+	{
+		*best = candidate;
+		*normal = cand_norm;
+	}
 }
 
-static t_vec3 cylinder_side_normal(
-    t_cylinder *cy,
-    t_vec3 point)
+int	intersect_cylinder(t_ray ray, t_object *obj, t_hit *hit)
 {
-    double  proj;
-    t_vec3  axis_point;
+	t_cylinder	*cy;
+	double		t;
+	double		best;
+	t_vec3		normal;
+	t_vec3		tmp;
 
-    proj = vec3_dot(
-        vec3_sub(point, cy->center),
-        cy->axis);
-
-    axis_point = vec3_add(
-        cy->center,
-        vec3_scale(cy->axis, proj));
-
-    return (
-        vec3_normalize(
-            vec3_sub(point, axis_point)));
-}
-
-int intersect_cylinder(
-    t_ray ray,
-    t_object *obj,
-    t_hit *hit)
-{
-    t_cylinder  *cy;
-    double      t;
-    t_vec3      normal;
-
-    cy = (t_cylinder *)obj->data;
-
-    t = cylinder_side_distance(ray, cy);
-
-    if (t < EPSILON)
-        return (0);
-
-    normal = cylinder_side_normal(
-        cy,
-        ray_at(ray, t));
-
-    hit_fill(
-        hit,
-        ray,
-        t,
-        normal,
-        obj);
-
-    return (1);
+	cy = (t_cylinder *)obj->data;
+	best = -1;
+	normal = (t_vec3){0, 0, 0};
+	if (try_side_hit(ray, cy, &t, &tmp))
+		update_best(t, &best, &normal, tmp);
+	if (try_top_cap_hit(ray, cy, &t, &tmp))
+		update_best(t, &best, &normal, tmp);
+	if (try_bottom_cap_hit(ray, cy, &t, &tmp))
+		update_best(t, &best, &normal, tmp);
+	if (best < EPSILON)
+		return (0);
+	hit_fill(hit, ray, best, normal);
+	hit->object = obj;
+	return (1);
 }
